@@ -1,7 +1,9 @@
 package com.techelevator;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.techelevator.view.Menu;
@@ -21,12 +23,16 @@ public class VendingMachineCLI {
 	private Scanner in;
 	private Menu menu;
 	private static int balance = 0;
+	List<Item> listOfPurchasedItems = new ArrayList<Item>();
+	Inventory inventory= new Inventory();
+	Map<String, Item> intList;
 	
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
 	}
 	
-	public void run() {
+	public void run() throws FileNotFoundException {
+		intList = inventory.setInventory();
 		while(true) {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			
@@ -47,7 +53,7 @@ public class VendingMachineCLI {
 	public void purchase() {
 		String purchaseChoice = (String)menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 		
-		List<Item> listOfPurchasedItems = new ArrayList<Item>();
+		
 		
 		if(purchaseChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
 			feedMoney();
@@ -100,7 +106,7 @@ public class VendingMachineCLI {
 			}
 		if (productIsAvailable) {
 			// reduce inventory
-			// update listOfPurchasedItems
+			listOfPurchasedItems.add(inventory.get(userChoice));
 			// reduce balance
 			// print log file
 		} else {
@@ -109,8 +115,12 @@ public class VendingMachineCLI {
 		}
 	}
 	
+	private void showInventory() {
+		
+		
+	}
+
 	public void finishTransaction() {
-		listOfPurchasedItems();
 		for (Item i : listOfPurchasedItems) {
 			System.out.println(i.getSound());
 		}
