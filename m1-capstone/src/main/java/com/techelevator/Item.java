@@ -32,10 +32,10 @@ public class Item {
 	}
 	public String getSound() {
 		String sound = null;
-		if (type.equals("candy")) sound = "Munch Munch, Yum!";
-		if (type.equals("chip")) sound = "Crunch Crunch, Yum!";
-		if (type.equals("drink")) sound = "Glug Glug, Yum!";
-		if (type.equals("gum")) sound = "Chew Chew, Yum!";
+		if (type.equals("Candy")) sound = "Munch Munch, Yum!";
+		if (type.equals("Chip")) sound = "Crunch Crunch, Yum!";
+		if (type.equals("Drink")) sound = "Glug Glug, Yum!";
+		if (type.equals("Gum")) sound = "Chew Chew, Yum!";
 		return sound;
 		
 	}

@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class Inventory {
 	private static String path;
-	Map<String, Item> inventory = new HashMap<String, Item>();
+	Map<String, Slot> inventory = new HashMap<String, Slot>();
 	
-	public Map<String, Item> setInventory() throws FileNotFoundException {
-		path = "/../../../../../vendingmachine.csv";
+	public Map<String, Slot> setInventory() throws FileNotFoundException {
+		path = "vendingmachine.csv";
 		File inputFile = getFileByPath(path);
 		try (Scanner fileScanner = new Scanner(inputFile)) {
 			while (fileScanner.hasNextLine()) {
@@ -19,10 +19,10 @@ public class Inventory {
 				String key = line.substring(0,2);
 				int nameEnd = line.indexOf("|",3);
 				String name = line.substring(3, nameEnd);
-				int priceEnd = line.indexOf("|",nameEnd);
+				int priceEnd = line.indexOf("|",nameEnd+1);
 				double price = Double.parseDouble(line.substring(nameEnd +1, priceEnd));
 				String type = line.substring(priceEnd+1);
-				inventory.put(key, new Item(name, price, type));
+				inventory.put(key, new Slot(new Item(name, price, type),5));
 			}
 			
 		}
