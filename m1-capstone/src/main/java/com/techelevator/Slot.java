@@ -2,14 +2,21 @@ package com.techelevator;
 
 public class Slot {
 
-	public Item item;
-	public int qty;
-	
+	private Item item;
+	private int qty;
+
 	public Slot(Item item, int qty) {
 		this.item = item;
 		this.qty = qty;
 	}
 	
+	public Item getItem() {
+		return item;
+	}
+
+	public int getQty() {
+		return qty;
+	}
 	
 
 }

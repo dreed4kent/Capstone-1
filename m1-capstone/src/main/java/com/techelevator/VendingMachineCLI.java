@@ -114,17 +114,17 @@ public class VendingMachineCLI {
 			System.out.println("\nYour choice is not recognized\n");
 			sale();
 		}
-		if (intList.get(userChoice).qty > 0) {
+		if (intList.get(userChoice).getQty() > 0) {
 			// reduce inventory
 
-			int s = intList.get(userChoice).qty;
-			intList.put(userChoice, new Slot(intList.get(userChoice).item, s - 1));
+			int s = intList.get(userChoice).getQty();
+			intList.put(userChoice, new Slot(intList.get(userChoice).getItem(), s - 1));
 			// adding to list of purchased items
-			listOfPurchasedItems.add(intList.get(userChoice).item);
+			listOfPurchasedItems.add(intList.get(userChoice).getItem());
 
 			// reduce balance
-			balance -= (double)intList.get(userChoice).item.getPrice();
-			System.out.println("You got " + intList.get(userChoice).item.getName());
+			balance -= (double)intList.get(userChoice).getItem().getPrice();
+			System.out.println("You got " + intList.get(userChoice).getItem().getName());
 			System.out.println("Your balance is : " + balance + "  dollar(-s)" );
 			// print log file
 		} else {
@@ -162,7 +162,7 @@ public class VendingMachineCLI {
 		for (Map.Entry<String, Slot> entry : intList.entrySet()) {
 			String key = entry.getKey();
 			Slot value = entry.getValue();
-			String output = String.format("%-5s %-25s %-12s", key, value.item.getName(), value.item.getPrice());
+			String output = String.format("%-5s %-25s %-12s", key, value.getItem().getName(), value.getItem().getPrice());
 			System.out.println(output);
 		}
 	}
