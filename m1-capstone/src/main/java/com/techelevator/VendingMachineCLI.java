@@ -21,6 +21,7 @@ public class VendingMachineCLI {
 
 	private Scanner in;
 	private Menu menu;
+
 	private static double balance = 0;
 	Inventory inventory = new Inventory();
 	Map<String, Slot> intList;
@@ -32,6 +33,7 @@ public class VendingMachineCLI {
 		this.in = new Scanner(System.in);
 	}
 
+
 	public void run() throws FileNotFoundException {
 		intList = inventory.setInventory();
 		while (true) {
@@ -40,6 +42,8 @@ public class VendingMachineCLI {
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				showInventory();
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+
+
 				purchase();
 			}
 		}
@@ -52,9 +56,11 @@ public class VendingMachineCLI {
 	}
 
 	public void purchase() {
+
 		String purchaseChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 
 		if (purchaseChoice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
+
 			feedMoney();
 			purchase();
 		} else if (purchaseChoice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
@@ -110,10 +116,12 @@ public class VendingMachineCLI {
 		}
 		if (intList.get(userChoice).qty > 0) {
 			// reduce inventory
+
 			int s = intList.get(userChoice).qty;
 			intList.put(userChoice, new Slot(intList.get(userChoice).item, s - 1));
 			// adding to list of purchased items
 			listOfPurchasedItems.add(intList.get(userChoice).item);
+
 			// reduce balance
 			balance -= (double)intList.get(userChoice).item.getPrice();
 			System.out.println("You got " + intList.get(userChoice).item.getName());
@@ -124,6 +132,7 @@ public class VendingMachineCLI {
 			sale();
 		}
 	}
+
 
 	public void finishTransaction() {
 		for (Item i : listOfPurchasedItems) {
