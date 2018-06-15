@@ -128,6 +128,7 @@ public class VendingMachineCLI {
 			System.out.println("\nYour choice is not recognized. Please try again!\n");
 			sale();
 		}
+
 		if (balance >= intList.get(userChoice).getItem().getPrice()) {
 			if (intList.get(userChoice).getQty() > 0) {
 				// reduce inventory
@@ -147,6 +148,7 @@ public class VendingMachineCLI {
 				System.out.println("This item is Sold Out\n");
 				purchase();
 			}
+
 		} else {
 			System.out.println("Your don't have enough money to buy this item.");
 			System.out.println("Please add money or make another choice");
@@ -185,7 +187,9 @@ public class VendingMachineCLI {
 		for (Map.Entry<String, Slot> entry : intList.entrySet()) {
 			String key = entry.getKey();
 			Slot value = entry.getValue();
+
 			String output = String.format("%-5s %-20s $%6.2f", key, value.getItem().getName(), value.getItem().getPrice());
+
 			System.out.println(output);
 		}
 	}

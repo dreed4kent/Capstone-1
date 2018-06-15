@@ -4,7 +4,7 @@ public class Slot {
 
 	private Item item;
 	private int qty;
-	
+
 	public Slot(Item item, int qty) {
 		this.item = item;
 		this.qty = qty;
@@ -17,7 +17,6 @@ public class Slot {
 	public int getQty() {
 		return qty;
 	}
-	
 	
 	
 
